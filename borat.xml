@@ -27,7 +27,7 @@
       <produce-connection class="null-connection">
         <unique-id>NullConnection-2385428</unique-id>
       </produce-connection>
-      <unique-id>Channel2</unique-id>
+      <unique-id>Channel3</unique-id>
       <workflow-list>
         <standard-workflow>
           <consumer class="fs-consumer">
@@ -61,7 +61,7 @@
             </filename-creator>
           </producer>
           <produce-exception-handler class="null-produce-exception-handler"/>
-          <unique-id>Workflow2</unique-id>
+          <unique-id>Workflow3</unique-id>
         </standard-workflow>
       </workflow-list>
     </channel>
