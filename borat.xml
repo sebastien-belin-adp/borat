@@ -1,5 +1,5 @@
 <adapter>
-  <unique-id>FS-FS-Bare-Wooo-g</unique-id>
+  <unique-id>FS-FS-modified-test3</unique-id>
   <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
   <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
   <log-handler class="null-log-handler"/>
@@ -62,31 +62,6 @@
           </producer>
           <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>Workflow3</unique-id>
-        </standard-workflow>
-      </workflow-list>
-    </channel>
-    <channel>
-      <consume-connection class="null-connection">
-        <unique-id>NullConnection-1593049</unique-id>
-      </consume-connection>
-      <produce-connection class="null-connection">
-        <unique-id>NullConnection-4440421</unique-id>
-      </produce-connection>
-      <unique-id>Channel-627395</unique-id>
-      <workflow-list>
-        <standard-workflow>
-          <consumer class="null-message-consumer">
-            <unique-id>NullMessageConsumer-2490179</unique-id>
-          </consumer>
-          <service-collection class="service-list">
-            <unique-id>ServiceList-9281223</unique-id>
-            <services/>
-          </service-collection>
-          <producer class="null-message-producer">
-            <unique-id>NullMessageProducer-8642886</unique-id>
-          </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
-          <unique-id>StandardWorkflow-4336305</unique-id>
         </standard-workflow>
       </workflow-list>
     </channel>
