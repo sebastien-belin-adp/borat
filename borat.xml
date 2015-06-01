@@ -1,5 +1,5 @@
 <adapter>
-  <unique-id>FS-FS-Bare-Wooo-d</unique-id>
+  <unique-id>FS-FS-Bare-Wooo-e</unique-id>
   <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
   <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
   <log-handler class="null-log-handler"/>
