@@ -2,9 +2,13 @@
   <unique-id>FS-FS-modified-test7</unique-id>
   <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
   <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
-  <log-handler class="null-log-handler"/>
+  <log-handler class="null-log-handler">
+    <unique-id>tender-shannon</unique-id>
+  </log-handler>
   <shared-components>
     <connections/>
+    <services/>
+    <unique-id>naughty-davinci</unique-id>
   </shared-components>
   <event-handler class="default-event-handler">
     <unique-id>DefaultEventHandler</unique-id>
@@ -18,11 +22,13 @@
   <message-error-handler class="null-processing-exception-handler">
     <unique-id>NullProcessingExceptionHandler-9650991</unique-id>
   </message-error-handler>
-  <failed-message-retrier class="no-retries"/>
+  <failed-message-retrier class="no-retries">
+    <unique-id>sharp-archimedes</unique-id>
+  </failed-message-retrier>
   <channel-list>
     <channel>
       <consume-connection class="null-connection">
-        <unique-id>NullConnection-1183581</unique-id>
+        <unique-id>NullConnection-118358</unique-id>
       </consume-connection>
       <produce-connection class="null-connection">
         <unique-id>NullConnection-2385428</unique-id>
@@ -35,6 +41,7 @@
               <destination>messages_in</destination>
             </destination>
             <poller class="fixed-interval-poller">
+              <unique-id>focused-varahamihira</unique-id>
               <poll-interval>
                 <unit>SECONDS</unit>
                 <interval>10</interval>
@@ -62,12 +69,14 @@
           <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>Workflow3</unique-id>
         </standard-workflow>
+        <unique-id>backstabbing-sinoussi</unique-id>
       </workflow-list>
       <unique-id>Channel6</unique-id>
     </channel>
+    <unique-id>nostalgic-shaw</unique-id>
   </channel-list>
   <message-error-digester class="standard-message-error-digester">
-    <digest-max-size>100</digest-max-size>
     <unique-id>ErrorDigest</unique-id>
+    <digest-max-size>100</digest-max-size>
   </message-error-digester>
 </adapter>
