@@ -17,7 +17,13 @@
           </consumer>
           <service-collection class="service-list">
             <unique-id>ServiceList-9080760</unique-id>
-            <services/>
+            <services>
+              <add-timestamp-metadata-service>
+                <unique-id>amazing-ramanujan</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format>yyyy-MM-dd'T'HH:mm:ssZ</date-format>
+              </add-timestamp-metadata-service>
+            </services>
           </service-collection>
           <producer class="fs-producer">
             <unique-id>FS-Producer</unique-id>
