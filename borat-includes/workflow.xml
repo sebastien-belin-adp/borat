@@ -5,7 +5,6 @@
               <destination>messages_in</destination>
             </destination>
             <poller class="fixed-interval-poller">
-              <unique-id>focused-varahamihira</unique-id>
               <poll-interval>
                 <unit>SECONDS</unit>
                 <interval>10</interval>

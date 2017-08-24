@@ -8,7 +8,6 @@
   <shared-components>
     <connections/>
     <services/>
-    <unique-id>naughty-davinci</unique-id>
   </shared-components>
   <event-handler class="default-event-handler">
     <unique-id>DefaultEventHandler</unique-id>
@@ -35,11 +34,9 @@
       </produce-connection>
       <workflow-list>
         <xi:include href="borat-includes/workflow.xml"/>
-        <unique-id>backstabbing-sinoussi</unique-id>
       </workflow-list>
-      <unique-id>Channel6</unique-id>
+      <unique-id>Channel7</unique-id>
     </channel>
-    <unique-id>nostalgic-shaw</unique-id>
   </channel-list>
   <message-error-digester class="standard-message-error-digester">
     <unique-id>ErrorDigest</unique-id>
