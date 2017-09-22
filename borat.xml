@@ -68,7 +68,7 @@
           <unique-id>Workflow3</unique-id>
         </standard-workflow>
       </workflow-list>
-      <unique-id>Channel4Changed</unique-id>
+      <unique-id>Channel5Changed</unique-id>
     </channel>
   </channel-list>
   <message-error-digester class="standard-message-error-digester">
