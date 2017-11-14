@@ -1,0 +1,1 @@
+{"xincludeXpaths":{"/adapter/channel-list/channel/produce-connection":"produce-connection","/adapter/channel-list/channel/consume-connection":"consume-connection","/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]":"workflow"},"variableSets":{"staging":{},"default":{}},"configFileName":"borat.xml"}
