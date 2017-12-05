@@ -2,7 +2,7 @@
           <consumer class="fs-consumer">
             <unique-id>Channel-5671058</unique-id>
             <destination class="configured-consume-destination">
-              <destination>messages_in</destination>
+              <destination>${keyOne}</destination>
             </destination>
             <poller class="fixed-interval-poller">
               <poll-interval>
