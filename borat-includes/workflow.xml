@@ -21,7 +21,7 @@
           <producer class="fs-producer">
             <unique-id>FS-Producer</unique-id>
             <destination class="configured-produce-destination">
-              <destination>messages_out</destination>
+              <destination>${keyTwo}</destination>
             </destination>
             <create-dirs>true</create-dirs>
             <fs-worker class="fs-nio-worker"/>
