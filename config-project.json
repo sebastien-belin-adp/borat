@@ -1,0 +1,10 @@
+{
+  "configFileName" : "borat.xml",
+  "variableSets" : {
+    "default" : { }
+  },
+  "variableXpaths" : { },
+  "uidInXincludeCompntListFileName" : false,
+  "xincludeXpaths" : { },
+  "structured" : true
+}
