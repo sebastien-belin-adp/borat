@@ -2,6 +2,7 @@
           <consumer class="fs-consumer">
             <unique-id>Channel-5671058</unique-id>
             <destination class="configured-consume-destination">
+              <configured-thread-name>${keyThree}</configured-thread-name>
               <destination>${keyOne}</destination>
             </destination>
             <poller class="fixed-interval-poller">
