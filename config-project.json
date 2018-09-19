@@ -3,8 +3,15 @@
   "variableSets" : {
     "default" : { }
   },
-  "variableXpaths" : { },
+  "variableXpaths" : {
+    "/adapter/channel-list/channel[unique-id=\"Channel5\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/destination" : "${consumeDest}",
+    "/adapter/channel-list/channel[unique-id=\"Channel5\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/producer/destination/destination" : "${produceDest}"
+  },
   "uidInXincludeCompntListFileName" : false,
-  "xincludeXpaths" : { },
+  "xincludeXpaths" : {
+    "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflow",
+    "/adapter/channel-list/channel/consume-connection" : "consume-connection",
+    "/adapter/channel-list/channel/produce-connection" : "produce-connection"
+  },
   "structured" : true
 }

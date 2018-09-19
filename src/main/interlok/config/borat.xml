@@ -1,4 +1,4 @@
-<adapter>
+<?xml version="1.0" encoding="UTF-8"?><adapter xmlns:xi="http://www.w3.org/2001/XInclude">
   <unique-id>FS-FS-modified-test7</unique-id>
   <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
   <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
@@ -26,47 +26,10 @@
   </failed-message-retrier>
   <channel-list>
     <channel>
-      <consume-connection class="null-connection">
-        <unique-id>NullConnection-1183581</unique-id>
-      </consume-connection>
-      <produce-connection class="null-connection">
-        <unique-id>NullConnection-2385428</unique-id>
-      </produce-connection>
+      <xi:include href="borat-includes/consume-connection.xml"/>
+      <xi:include href="borat-includes/produce-connection.xml"/>
       <workflow-list>
-        <standard-workflow>
-          <consumer class="fs-consumer">
-            <unique-id>Channel-5671058</unique-id>
-            <destination class="configured-consume-destination">
-              <destination>messages_in</destination>
-            </destination>
-            <poller class="fixed-interval-poller">
-              <poll-interval>
-                <unit>SECONDS</unit>
-                <interval>10</interval>
-              </poll-interval>
-            </poller>
-            <create-dirs>true</create-dirs>
-            <file-sorter class="fs-sort-none"/>
-            <wip-suffix>.wip</wip-suffix>
-          </consumer>
-          <service-collection class="service-list">
-            <unique-id>ServiceList-9080760</unique-id>
-            <services/>
-          </service-collection>
-          <producer class="fs-producer">
-            <unique-id>FS-Producer</unique-id>
-            <destination class="configured-produce-destination">
-              <destination>messages_out</destination>
-            </destination>
-            <create-dirs>true</create-dirs>
-            <fs-worker class="fs-nio-worker"/>
-            <filename-creator class="formatted-filename-creator">
-              <filename-format>%2$tQ.xml</filename-format>
-            </filename-creator>
-          </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
-          <unique-id>Workflow3</unique-id>
-        </standard-workflow>
+        <xi:include href="borat-includes/workflow.xml"/>
       </workflow-list>
       <unique-id>Channel5</unique-id>
     </channel>
