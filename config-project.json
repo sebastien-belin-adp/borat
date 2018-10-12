@@ -1,1 +1,12 @@
-{"xincludeXpaths":{"/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]":"workflow"},"variableSets":{"default":{}},"configFileName":"borat.xml","variableXpaths":{},"uidInXincludeCompntListFileName":false}
+{
+  "configFileName" : "borat.xml",
+  "variableSets" : {
+    "default" : { }
+  },
+  "variableXpaths" : { },
+  "uidInXincludeCompntListFileName" : false,
+  "xincludeXpaths" : {
+    "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflows/workflow"
+  },
+  "structured" : false
+}

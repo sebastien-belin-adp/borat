@@ -33,7 +33,7 @@
         <unique-id>NullConnection-2385428</unique-id>
       </produce-connection>
       <workflow-list>
-        <xi:include href="borat-includes/workflow.xml"/>
+        <xi:include href="borat-includes/workflows/workflow.xml"/>
       </workflow-list>
       <unique-id>Channel7</unique-id>
     </channel>
