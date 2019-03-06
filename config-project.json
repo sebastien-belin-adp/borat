@@ -1,0 +1,18 @@
+{
+  "name" : "2019-03-06T08.27.25",
+  "variableSets" : {
+    "default" : { },
+    "staging" : { }
+  },
+  "variableXpaths" : {
+    "/adapter/channel-list/channel[unique-id=\"Channel5\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/producer/destination/destination" : "${produceDest}",
+    "/adapter/channel-list/channel[unique-id=\"Channel5\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/destination" : "${consumeDest}"
+  },
+  "uidInXincludeCompntListFileName" : false,
+  "xincludeXpaths" : {
+    "/adapter/channel-list/channel/consume-connection" : "consume-connection",
+    "/adapter/channel-list/channel/produce-connection" : "produce-connection",
+    "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflow"
+  },
+  "structured" : true
+}

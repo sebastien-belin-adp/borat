@@ -16,7 +16,15 @@
           </consumer>
           <service-collection class="service-list">
             <unique-id>ServiceList-9080760</unique-id>
-            <services/>
+            <services>
+              <add-metadata-service>
+                <unique-id>backstabbing-morse</unique-id>
+                <metadata-element>
+                  <key>key</key>
+                  <value>value</value>
+                </metadata-element>
+              </add-metadata-service>
+            </services>
           </service-collection>
           <producer class="fs-producer">
             <unique-id>FS-Producer</unique-id>
