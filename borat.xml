@@ -25,8 +25,7 @@
   <failed-message-retrier class="no-retries">
     <unique-id>sharp-archimedes</unique-id>
   </failed-message-retrier>
-  <channel-list>
-  </channel-list>
+  <channel-list/>
   <message-error-digester class="standard-message-error-digester">
     <unique-id>ErrorDigest</unique-id>
     <digest-max-size>100</digest-max-size>
