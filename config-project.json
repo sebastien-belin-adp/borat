@@ -5,10 +5,6 @@
   },
   "variableXpaths" : { },
   "uidInXincludeCompntListFileName" : false,
-  "xincludeXpaths" : {
-    "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflows/workflow",
-    "/adapter/channel-list/channel/consume-connection" : "consume-connection",
-    "/adapter/channel-list/channel/produce-connection" : "produce-connection"
-  },
-  "structured" : false
+  "xincludeXpaths" : {},
+  "structured" : true
 }
