@@ -25,14 +25,6 @@
     <unique-id>sharp-archimedes</unique-id>
   </failed-message-retrier>
   <channel-list>
-    <channel>
-      <xi:include href="borat-includes/consume-connection.xml"/>
-      <xi:include href="borat-includes/produce-connection.xml"/>
-      <workflow-list>
-        <xi:include href="borat-includes/workflows\workflow.xml"/>
-      </workflow-list>
-      <unique-id>Channel1</unique-id>
-    </channel>
   </channel-list>
   <message-error-digester class="standard-message-error-digester">
     <unique-id>ErrorDigest</unique-id>
