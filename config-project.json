@@ -5,6 +5,6 @@
   },
   "variableXpaths" : { },
   "uidInXincludeCompntListFileName" : false,
-  "xincludeXpaths" : {},
+  "xincludeXpaths" : { },
   "structured" : false
 }
