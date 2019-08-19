@@ -24,6 +24,13 @@
                   <value>value</value>
                 </metadata-element>
               </add-metadata-service>
+              <add-timestamp-metadata-service>
+                <unique-id>sad-fermat</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd'T'HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
             </services>
           </service-collection>
           <producer class="fs-producer">
@@ -39,4 +46,15 @@
           </producer>
           <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>Workflow3</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>Workflow3-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>Workflow3-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
         </standard-workflow>
