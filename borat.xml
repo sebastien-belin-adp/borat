@@ -1,5 +1,5 @@
 <adapter>
-  <unique-id>My First Adapter 3</unique-id>
+  <unique-id>MyInterlokInstance</unique-id>
   <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
   <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
   <shared-components>
@@ -9,19 +9,1317 @@
   <event-handler class="default-event-handler">
     <unique-id>DefaultEventHandler</unique-id>
     <connection class="null-connection">
-      <unique-id>compassionate-hodgkin</unique-id>
+      <unique-id>cocky-morse</unique-id>
     </connection>
     <producer class="null-message-producer">
-      <unique-id>sad-shockley</unique-id>
+      <unique-id>zen-pasteur</unique-id>
     </producer>
   </event-handler>
-  <message-error-handler class="null-processing-exception-handler">
-    <unique-id>elated-lamport</unique-id>
+  <heartbeat-event-interval>
+    <unit>MINUTES</unit>
+    <interval>60</interval>
+  </heartbeat-event-interval>
+  <message-error-handler class="standard-processing-exception-handler">
+    <unique-id>elastic-jepsen</unique-id>
+    <processing-exception-service class="service-list">
+      <unique-id>affectionate-clarke</unique-id>
+      <services>
+        <standalone-producer>
+          <unique-id>pensive-nobel</unique-id>
+          <connection class="null-connection">
+            <unique-id>grave-kirch</unique-id>
+          </connection>
+          <producer class="fs-producer">
+            <encoder class="mime-encoder"/>
+            <unique-id>tiny-goldstine</unique-id>
+            <destination class="configured-produce-destination">
+              <destination>./messages/bad</destination>
+            </destination>
+            <create-dirs>true</create-dirs>
+            <fs-worker class="fs-nio-worker"/>
+            <filename-creator class="formatted-filename-creator">
+              <filename-format>%1$s</filename-format>
+            </filename-creator>
+          </producer>
+        </standalone-producer>
+      </services>
+    </processing-exception-service>
   </message-error-handler>
-  <failed-message-retrier class="no-retries">
-    <unique-id>affectionate-brahmagupta</unique-id>
+  <failed-message-retrier class="default-failed-message-retrier">
+    <standalone-consumer>
+      <connection class="null-connection">
+        <unique-id>clever-engelbart</unique-id>
+      </connection>
+      <consumer class="fs-consumer">
+        <encoder class="mime-encoder">
+          <retain-unique-id>true</retain-unique-id>
+        </encoder>
+        <unique-id>condescending-meitner</unique-id>
+        <destination class="configured-consume-destination">
+          <configured-thread-name>MESSAGE_RETRY</configured-thread-name>
+          <destination>./messages/retry</destination>
+        </destination>
+        <poller class="quartz-cron-poller">
+          <cron-expression>0 */2 * * * ?</cron-expression>
+        </poller>
+        <create-dirs>true</create-dirs>
+        <file-sorter class="fs-sort-none"/>
+        <wip-suffix>.wip</wip-suffix>
+      </consumer>
+    </standalone-consumer>
+    <unique-id>dreamy-bell</unique-id>
   </failed-message-retrier>
-  <channel-list/>
+  <channel-list>
+    <channel>
+      <consume-connection class="null-connection">
+        <unique-id>cocky-shaw</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>boring-golick</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>mad-morse</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>SendOrders</configured-thread-name>
+            </destination>
+            <poller class="random-interval-poller"/>
+            <message-provider class="static-polling-trigger-template">
+              <template><![CDATA[Message triggered by SEND_ORDERS]]></template>
+            </message-provider>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>reverent-austin</unique-id>
+            <services>
+              <embedded-scripting-service>
+                <unique-id>CreateMetadata</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var md_total_value = Math.floor((Math.random() * 1000)) + 1;
+var md_unit_value = Math.floor((Math.random() * 100)) + 1;
+                
+message.addMetadata('OrderValue', md_total_value);
+message.addMetadata('NumberOfUnits', md_unit_value);
+
+var md_count_index = Math.floor((Math.random() * 4));
+var md_count_values = [ "Laptop", "Desktop" ,  "Tablet", "Smartphone"];
+message.addMetadata('UnitType', md_count_values[md_count_index]);
+
+              
+                ]]></script>
+              </embedded-scripting-service>
+              <add-timestamp-metadata-service>
+                <unique-id>AddTimestamp</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd&apos;T&apos;HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
+              <payload-hashing-service>
+                <unique-id>HashPayload</unique-id>
+                <hash-algorithm>MD5</hash-algorithm>
+                <metadata-key>payloadHash</metadata-key>
+              </payload-hashing-service>
+              <generate-unique-metadata-value-service>
+                <unique-id>GenerateUniqueMetadata</unique-id>
+                <generator class="guid-generator"/>
+              </generate-unique-metadata-value-service>
+              <log-message-service>
+                <unique-id>LogMessage</unique-id>
+                <log-level>DEBUG</log-level>
+              </log-message-service>
+              <embedded-scripting-service>
+                <unique-id>FailsSomeOfTheTime</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 5) {
+  message.addMetadata("WorkflowStatus", "WorkflowFailure");
+} else {
+  message.addMetadata("WorkflowStatus", "WorkflowSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>CheckWorkflowStatus</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckWorkflowStatus</unique-id>
+                    <metadata-key>WorkflowStatus</metadata-key>
+                    <default-service-id>WorkflowFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>WorkflowSuccess</unique-id>
+                    <services/>
+                  </service-list>
+                  <service-list>
+                    <unique-id>WorkflowFailure</unique-id>
+                    <services>
+                      <throw-exception-service>
+                        <unique-id>sharp-spence</unique-id>
+                        <exception-generator class="exception-from-metadata">
+                          <default-exception-message>Order Send Marked as failed.</default-exception-message>
+                        </exception-generator>
+                      </throw-exception-service>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckWorkflowStatus</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>compassionate-shaw</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>Send</unique-id>
+          <metadata-count-interceptor>
+            <unique-id>SendOrders_UnitTypes</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>100</timeslice-history-count>
+            <metadata-key>UnitType</metadata-key>
+          </metadata-count-interceptor>
+          <metadata-totals-interceptor>
+            <unique-id>SendOrders_OrderTotals</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>100</timeslice-history-count>
+            <metadata-key>OrderValue</metadata-key>
+            <metadata-key>NumberOfUnits</metadata-key>
+          </metadata-totals-interceptor>
+          <message-metrics-interceptor>
+            <unique-id>Send-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>Send-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>cocky-tesla</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>ReceiveOrders</configured-thread-name>
+            </destination>
+            <poller class="random-interval-poller"/>
+            <message-provider class="static-polling-trigger-template">
+              <template><![CDATA[Message triggered by RECEIVE_ORDERS]]></template>
+            </message-provider>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>hungry-darwin</unique-id>
+            <services>
+              <add-timestamp-metadata-service>
+                <unique-id>AddTimestamp</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd&apos;T&apos;HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
+              <payload-hashing-service>
+                <unique-id>HashPayload</unique-id>
+                <hash-algorithm>MD5</hash-algorithm>
+                <metadata-key>payloadHash</metadata-key>
+              </payload-hashing-service>
+              <generate-unique-metadata-value-service>
+                <unique-id>GenerateUniqueMetadata</unique-id>
+                <generator class="guid-generator"/>
+              </generate-unique-metadata-value-service>
+              <log-message-service>
+                <unique-id>LogMessage</unique-id>
+                <log-level>DEBUG</log-level>
+              </log-message-service>
+              <embedded-scripting-service>
+                <unique-id>FailsSomeOfTheTime</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 5) {
+  message.addMetadata("WorkflowStatus", "WorkflowFailure");
+} else {
+  message.addMetadata("WorkflowStatus", "WorkflowSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>CheckWorkflowStatus</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckWorkflowStatus</unique-id>
+                    <metadata-key>WorkflowStatus</metadata-key>
+                    <default-service-id>WorkflowFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>WorkflowSuccess</unique-id>
+                    <services/>
+                  </service-list>
+                  <service-list>
+                    <unique-id>WorkflowFailure</unique-id>
+                    <services>
+                      <throw-exception-service>
+                        <unique-id>jovial-brahmagupta</unique-id>
+                        <exception-generator class="exception-from-metadata">
+                          <default-exception-message>Order Receive marked as Failed</default-exception-message>
+                        </exception-generator>
+                      </throw-exception-service>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckWorkflowStatus</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>nauseous-pare</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>Receive</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>Receive-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>Receive-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>Orders</unique-id>
+      <auto-start>false</auto-start>
+    </channel>
+    <channel>
+      <consume-connection class="null-connection">
+        <unique-id>berserk-euclid</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>sick-poincare</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>fervent-mestorf</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>SendInvoices</configured-thread-name>
+            </destination>
+            <poller class="random-interval-poller"/>
+            <message-provider class="static-polling-trigger-template">
+              <template><![CDATA[Message triggered by SEND_INVOICES]]></template>
+            </message-provider>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>cranky-noyce</unique-id>
+            <services>
+              <add-timestamp-metadata-service>
+                <unique-id>AddTimestamp</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd&apos;T&apos;HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
+              <payload-hashing-service>
+                <unique-id>HashPayload</unique-id>
+                <hash-algorithm>MD5</hash-algorithm>
+                <metadata-key>payloadHash</metadata-key>
+              </payload-hashing-service>
+              <generate-unique-metadata-value-service>
+                <unique-id>GenerateUniqueMetadata</unique-id>
+                <generator class="guid-generator"/>
+              </generate-unique-metadata-value-service>
+              <log-message-service>
+                <unique-id>LogMessage</unique-id>
+                <log-level>DEBUG</log-level>
+              </log-message-service>
+              <embedded-scripting-service>
+                <unique-id>FailsSomeOfTheTime</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 5) {
+  message.addMetadata("WorkflowStatus", "WorkflowFailure");
+} else {
+  message.addMetadata("WorkflowStatus", "WorkflowSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>CheckWorkflowStatus</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckWorkflowStatus</unique-id>
+                    <metadata-key>WorkflowStatus</metadata-key>
+                    <default-service-id>WorkflowFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>WorkflowSuccess</unique-id>
+                    <services/>
+                  </service-list>
+                  <service-list>
+                    <unique-id>WorkflowFailure</unique-id>
+                    <services>
+                      <throw-exception-service>
+                        <unique-id>zen-blackwell</unique-id>
+                        <exception-generator class="exception-from-metadata">
+                          <default-exception-message>Invoice Send marked as Failed</default-exception-message>
+                        </exception-generator>
+                      </throw-exception-service>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckWorkflowStatus</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>fervent-ardinghelli</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>Send</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>Send-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>Send-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>reverent-bohr</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>ReceiveInvoices</configured-thread-name>
+            </destination>
+            <poller class="random-interval-poller"/>
+            <message-provider class="static-polling-trigger-template">
+              <template><![CDATA[Message triggered by RECEIVE_INVOICES]]></template>
+            </message-provider>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>sleepy-fermat</unique-id>
+            <services>
+              <add-timestamp-metadata-service>
+                <unique-id>AddTimestamp</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd&apos;T&apos;HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
+              <payload-hashing-service>
+                <unique-id>HashPayload</unique-id>
+                <hash-algorithm>MD5</hash-algorithm>
+                <metadata-key>payloadHash</metadata-key>
+              </payload-hashing-service>
+              <generate-unique-metadata-value-service>
+                <unique-id>GenerateUniqueMetadata</unique-id>
+                <generator class="guid-generator"/>
+              </generate-unique-metadata-value-service>
+              <log-message-service>
+                <unique-id>LogMessage</unique-id>
+                <log-level>DEBUG</log-level>
+              </log-message-service>
+              <embedded-scripting-service>
+                <unique-id>FailsSomeOfTheTime</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 5) {
+  message.addMetadata("WorkflowStatus", "WorkflowFailure");
+} else {
+  message.addMetadata("WorkflowStatus", "WorkflowSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>CheckWorkflowStatus</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckWorkflowStatus</unique-id>
+                    <metadata-key>WorkflowStatus</metadata-key>
+                    <default-service-id>WorkflowFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>WorkflowSuccess</unique-id>
+                    <services/>
+                  </service-list>
+                  <service-list>
+                    <unique-id>WorkflowFailure</unique-id>
+                    <services>
+                      <throw-exception-service>
+                        <unique-id>fervent-keller</unique-id>
+                        <exception-generator class="exception-from-metadata">
+                          <default-exception-message>Invoice Receive marked as Failed</default-exception-message>
+                        </exception-generator>
+                      </throw-exception-service>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckWorkflowStatus</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>dreamy-ptolemy</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>Receive</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>Receive-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>Receive-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>Invoices</unique-id>
+      <auto-start>false</auto-start>
+    </channel>
+    <channel>
+      <consume-connection class="null-connection">
+        <unique-id>elegant-almeida</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>sick-wilson</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>goofy-davinci</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>SendInventoryUpdates</configured-thread-name>
+            </destination>
+            <poller class="random-interval-poller"/>
+            <message-provider class="static-polling-trigger-template">
+              <template><![CDATA[Message triggered by SEND_INVENTORY_UPDATES]]></template>
+            </message-provider>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>clever-volhard</unique-id>
+            <services>
+              <add-timestamp-metadata-service>
+                <unique-id>AddTimestamp</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd&apos;T&apos;HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
+              <payload-hashing-service>
+                <unique-id>HashPayload</unique-id>
+                <hash-algorithm>MD5</hash-algorithm>
+                <metadata-key>payloadHash</metadata-key>
+              </payload-hashing-service>
+              <generate-unique-metadata-value-service>
+                <unique-id>GenerateUniqueMetadata</unique-id>
+                <generator class="guid-generator"/>
+              </generate-unique-metadata-value-service>
+              <log-message-service>
+                <unique-id>LogMessage</unique-id>
+                <log-level>DEBUG</log-level>
+              </log-message-service>
+              <embedded-scripting-service>
+                <unique-id>FailsSomeOfTheTime</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 5) {
+  message.addMetadata("WorkflowStatus", "WorkflowFailure");
+} else {
+  message.addMetadata("WorkflowStatus", "WorkflowSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>CheckWorkflowStatus</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckWorkflowStatus</unique-id>
+                    <metadata-key>WorkflowStatus</metadata-key>
+                    <default-service-id>WorkflowFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>WorkflowSuccess</unique-id>
+                    <services/>
+                  </service-list>
+                  <service-list>
+                    <unique-id>WorkflowFailure</unique-id>
+                    <services>
+                      <throw-exception-service>
+                        <unique-id>stoic-minsky</unique-id>
+                        <exception-generator class="exception-from-metadata">
+                          <default-exception-message>InventoryUpdate Send marked as Failed</default-exception-message>
+                        </exception-generator>
+                      </throw-exception-service>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckWorkflowStatus</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>elated-borg</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>Send</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>Send-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>Send-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>peaceful-albattani</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>ReceiveInventoryUpdates</configured-thread-name>
+            </destination>
+            <poller class="random-interval-poller"/>
+            <message-provider class="static-polling-trigger-template">
+              <template><![CDATA[Message triggered by RECEIVE_INVENTORY_UPDATES]]></template>
+            </message-provider>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>condescending-jang</unique-id>
+            <services>
+              <add-timestamp-metadata-service>
+                <unique-id>AddTimestamp</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd&apos;T&apos;HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
+              <payload-hashing-service>
+                <unique-id>HashPayload</unique-id>
+                <hash-algorithm>MD5</hash-algorithm>
+                <metadata-key>payloadHash</metadata-key>
+              </payload-hashing-service>
+              <generate-unique-metadata-value-service>
+                <unique-id>GenerateUniqueMetadata</unique-id>
+                <generator class="guid-generator"/>
+              </generate-unique-metadata-value-service>
+              <log-message-service>
+                <unique-id>LogMessage</unique-id>
+                <log-level>DEBUG</log-level>
+              </log-message-service>
+              <embedded-scripting-service>
+                <unique-id>FailsSomeOfTheTime</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 5) {
+  message.addMetadata("WorkflowStatus", "WorkflowFailure");
+} else {
+  message.addMetadata("WorkflowStatus", "WorkflowSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>CheckWorkflowStatus</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckWorkflowStatus</unique-id>
+                    <metadata-key>WorkflowStatus</metadata-key>
+                    <default-service-id>WorkflowFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>WorkflowSuccess</unique-id>
+                    <services/>
+                  </service-list>
+                  <service-list>
+                    <unique-id>WorkflowFailure</unique-id>
+                    <services>
+                      <throw-exception-service>
+                        <unique-id>awesome-jennings</unique-id>
+                        <exception-generator class="exception-from-metadata">
+                          <default-exception-message>InventoryUpdate Receive marked as Failed</default-exception-message>
+                        </exception-generator>
+                      </throw-exception-service>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckWorkflowStatus</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>cocky-turing</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>Receive</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>Receive-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>Receive-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>InventoryUpdates</unique-id>
+      <auto-start>false</auto-start>
+    </channel>
+    <channel>
+      <consume-connection class="jetty-embedded-connection">
+        <unique-id>jolly-elion</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>condescending-ritchie</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="jetty-message-consumer">
+            <unique-id>focused-cori</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>HandleProductLookup</configured-thread-name>
+              <destination>/products/lookup</destination>
+            </destination>
+            <parameter-handler class="jetty-http-ignore-parameters"/>
+            <header-handler class="jetty-http-ignore-headers"/>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>gigantic-bhaskara</unique-id>
+            <services>
+              <add-timestamp-metadata-service>
+                <unique-id>AddTimestamp</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd&apos;T&apos;HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
+              <payload-hashing-service>
+                <unique-id>HashPayload</unique-id>
+                <hash-algorithm>MD5</hash-algorithm>
+                <metadata-key>payloadHash</metadata-key>
+              </payload-hashing-service>
+              <generate-unique-metadata-value-service>
+                <unique-id>GenerateUniqueMetadata</unique-id>
+                <generator class="guid-generator"/>
+              </generate-unique-metadata-value-service>
+              <embedded-scripting-service>
+                <unique-id>VerifyProductCode</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 20) {
+  message.addMetadata("ProductCodeCheck", "ProductCodeFailure");
+} else {
+  message.addMetadata("ProductCodeCheck", "ProductCodeSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>DoProductCodeLookup</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckProductCode</unique-id>
+                    <metadata-key>ProductCodeCheck</metadata-key>
+                    <default-service-id>ProductCodeFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>ProductCodeSuccess</unique-id>
+                    <services>
+                      <generate-unique-metadata-value-service>
+                        <unique-id>GenerateUniqueMetadata</unique-id>
+                        <metadata-key>ProductCode</metadata-key>
+                        <generator class="guid-generator"/>
+                      </generate-unique-metadata-value-service>
+                      <payload-from-metadata-service>
+                        <unique-id>CodeNotFound</unique-id>
+                        <metadata-tokens>
+                          <key-value-pair>
+                            <key>ProductCode</key>
+                            <value>__ProductCode__</value>
+                          </key-value-pair>
+                        </metadata-tokens>
+                        <template><![CDATA[Code=__ProductCode__]]></template>
+                      </payload-from-metadata-service>
+                      <standalone-producer>
+                        <unique-id>SendResponse</unique-id>
+                        <connection class="null-connection">
+                          <unique-id>berserk-meitner</unique-id>
+                        </connection>
+                        <producer class="jetty-standard-response-producer">
+                          <unique-id>pensive-euclid</unique-id>
+                          <status-provider class="http-configured-status">
+                            <status>OK_200</status>
+                          </status-provider>
+                          <response-header-provider class="jetty-no-response-headers"/>
+                          <content-type-provider class="http-configured-content-type-provider">
+                            <mime-type>text/plain</mime-type>
+                          </content-type-provider>
+                          <send-payload>true</send-payload>
+                        </producer>
+                      </standalone-producer>
+                    </services>
+                  </service-list>
+                  <service-list>
+                    <unique-id>ProductCodeFailure</unique-id>
+                    <services>
+                      <payload-from-metadata-service>
+                        <unique-id>CodeNotFound</unique-id>
+                        <metadata-tokens/>
+                        <template><![CDATA[Product Code Not Found]]></template>
+                      </payload-from-metadata-service>
+                      <standalone-producer>
+                        <unique-id>SendResponse</unique-id>
+                        <connection class="null-connection">
+                          <unique-id>tiny-booth</unique-id>
+                        </connection>
+                        <producer class="jetty-standard-response-producer">
+                          <unique-id>sharp-mahavira</unique-id>
+                          <status-provider class="http-configured-status">
+                            <status>UNAVAILABLE_503</status>
+                          </status-provider>
+                          <response-header-provider class="jetty-no-response-headers"/>
+                          <content-type-provider class="http-configured-content-type-provider">
+                            <mime-type>text/plain</mime-type>
+                          </content-type-provider>
+                          <send-payload>true</send-payload>
+                        </producer>
+                      </standalone-producer>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckProductCode</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>clever-shirley</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>HandleProductCodeLookup</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>HandleProductCodeLookup-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>HandleProductCodeLookup-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+        <standard-workflow>
+          <consumer class="jetty-message-consumer">
+            <unique-id>hungry-perlman</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>HandleProductMovement</configured-thread-name>
+              <destination>/products/movement</destination>
+            </destination>
+            <parameter-handler class="jetty-http-ignore-parameters"/>
+            <header-handler class="jetty-http-ignore-headers"/>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>determined-kirch</unique-id>
+            <services>
+              <embedded-scripting-service>
+                <unique-id>VerifyProductMovement</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 20) {
+  message.addMetadata("ProductMovementCheck", "ProductMovementFailure");
+} else {
+  message.addMetadata("ProductMovementCheck", "ProductMovementSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>DoProductMovement</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckProductMovement</unique-id>
+                    <metadata-key>ProductMovementCheck</metadata-key>
+                    <default-service-id>ProductMovementFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>ProductMovementSuccess</unique-id>
+                    <services>
+                      <generate-unique-metadata-value-service>
+                        <unique-id>GenerateUniqueMetadata</unique-id>
+                        <metadata-key>ProductMovementTransactionId</metadata-key>
+                        <generator class="guid-generator"/>
+                      </generate-unique-metadata-value-service>
+                      <payload-from-metadata-service>
+                        <unique-id>GenerateTransactionId</unique-id>
+                        <metadata-tokens>
+                          <key-value-pair>
+                            <key>ProductMovementTransactionId</key>
+                            <value>__ProductMovementTransactionId__</value>
+                          </key-value-pair>
+                        </metadata-tokens>
+                        <template><![CDATA[Code=__ProductMovementTransactionId__]]></template>
+                      </payload-from-metadata-service>
+                      <standalone-producer>
+                        <unique-id>SendResponse</unique-id>
+                        <connection class="null-connection">
+                          <unique-id>berserk-gates</unique-id>
+                        </connection>
+                        <producer class="jetty-standard-response-producer">
+                          <unique-id>nostalgic-goodall</unique-id>
+                          <status-provider class="http-configured-status">
+                            <status>OK_200</status>
+                          </status-provider>
+                          <response-header-provider class="jetty-no-response-headers"/>
+                          <content-type-provider class="http-configured-content-type-provider">
+                            <mime-type>text/plain</mime-type>
+                          </content-type-provider>
+                          <send-payload>true</send-payload>
+                        </producer>
+                      </standalone-producer>
+                    </services>
+                  </service-list>
+                  <service-list>
+                    <unique-id>ProductMovementFailure</unique-id>
+                    <services>
+                      <payload-from-metadata-service>
+                        <unique-id>GenerateProducteMovementFailure</unique-id>
+                        <metadata-tokens/>
+                        <template><![CDATA[Product Not found in location]]></template>
+                      </payload-from-metadata-service>
+                      <standalone-producer>
+                        <unique-id>SendResponse</unique-id>
+                        <connection class="null-connection">
+                          <unique-id>focused-mclean</unique-id>
+                        </connection>
+                        <producer class="jetty-standard-response-producer">
+                          <unique-id>desperate-mayer</unique-id>
+                          <status-provider class="http-configured-status">
+                            <status>UNAVAILABLE_503</status>
+                          </status-provider>
+                          <response-header-provider class="jetty-no-response-headers"/>
+                          <content-type-provider class="http-configured-content-type-provider">
+                            <mime-type>text/plain</mime-type>
+                          </content-type-provider>
+                          <send-payload>true</send-payload>
+                        </producer>
+                      </standalone-producer>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckProductMovement</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>thirsty-kilby</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>HandleProductMovement</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>HandleProductMovement-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>HandleProductMovement-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+        <standard-workflow>
+          <consumer class="jetty-message-consumer">
+            <unique-id>cocky-gates</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>HandleProductRecall</configured-thread-name>
+              <destination>/products/recall</destination>
+            </destination>
+            <parameter-handler class="jetty-http-ignore-parameters"/>
+            <header-handler class="jetty-http-ignore-headers"/>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>small-noether</unique-id>
+            <services>
+              <embedded-scripting-service>
+                <unique-id>VerifyProductRecall</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+                
+var maybeFail = Math.floor((Math.random() * 100) + 1);
+if (maybeFail <= 20) {
+  message.addMetadata("ProductRecallCheck", "ProductRecallFailure");
+} else {
+  message.addMetadata("ProductRecallCheck", "ProductRecallSuccess");
+}
+                
+                ]]></script>
+              </embedded-scripting-service>
+              <branching-service-collection>
+                <unique-id>DoProductRecall</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckProductRecall</unique-id>
+                    <metadata-key>ProductRecallCheck</metadata-key>
+                    <default-service-id>ProductRecallFailure</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>ProductRecallSuccess</unique-id>
+                    <services>
+                      <generate-unique-metadata-value-service>
+                        <unique-id>GenerateUniqueMetadata</unique-id>
+                        <metadata-key>ProductRecallTransactionId</metadata-key>
+                        <generator class="guid-generator"/>
+                      </generate-unique-metadata-value-service>
+                      <payload-from-metadata-service>
+                        <unique-id>GenerateTransactionId</unique-id>
+                        <metadata-tokens>
+                          <key-value-pair>
+                            <key>ProductRecallTransactionId</key>
+                            <value>__ProductRecallTransactionId__</value>
+                          </key-value-pair>
+                        </metadata-tokens>
+                        <template><![CDATA[Code=__ProductRecallTransactionId__]]></template>
+                      </payload-from-metadata-service>
+                      <standalone-producer>
+                        <unique-id>SendResponse</unique-id>
+                        <connection class="null-connection">
+                          <unique-id>prickly-khorana</unique-id>
+                        </connection>
+                        <producer class="jetty-standard-response-producer">
+                          <unique-id>cocky-golick</unique-id>
+                          <status-provider class="http-configured-status">
+                            <status>OK_200</status>
+                          </status-provider>
+                          <response-header-provider class="jetty-no-response-headers"/>
+                          <content-type-provider class="http-configured-content-type-provider">
+                            <mime-type>text/plain</mime-type>
+                          </content-type-provider>
+                          <send-payload>true</send-payload>
+                        </producer>
+                      </standalone-producer>
+                    </services>
+                  </service-list>
+                  <service-list>
+                    <unique-id>ProductRecallFailure</unique-id>
+                    <services>
+                      <payload-from-metadata-service>
+                        <unique-id>GenerateProducteRecallFailure</unique-id>
+                        <metadata-tokens/>
+                        <template><![CDATA[Could not recall product]]></template>
+                      </payload-from-metadata-service>
+                      <standalone-producer>
+                        <unique-id>SendResponse</unique-id>
+                        <connection class="null-connection">
+                          <unique-id>reverent-torvalds</unique-id>
+                        </connection>
+                        <producer class="jetty-standard-response-producer">
+                          <unique-id>awesome-golick</unique-id>
+                          <status-provider class="http-configured-status">
+                            <status>UNAVAILABLE_503</status>
+                          </status-provider>
+                          <response-header-provider class="jetty-no-response-headers"/>
+                          <content-type-provider class="http-configured-content-type-provider">
+                            <mime-type>text/plain</mime-type>
+                          </content-type-provider>
+                          <send-payload>true</send-payload>
+                        </producer>
+                      </standalone-producer>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckProductRecall</first-service-id>
+              </branching-service-collection>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>distracted-saha</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>HandleProductRecall</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>HandleProductRecall-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>HandleProductRecall-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+        <standard-workflow>
+          <consumer class="jetty-message-consumer">
+            <unique-id>desperate-noether</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>DefaultURL</configured-thread-name>
+              <destination>/products/*</destination>
+            </destination>
+            <parameter-handler class="jetty-http-ignore-parameters"/>
+            <header-handler class="jetty-http-ignore-headers"/>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>elated-bhaskara</unique-id>
+            <services>
+              <payload-from-metadata-service>
+                <unique-id>GenerateResult</unique-id>
+                <metadata-tokens/>
+                <template><![CDATA[URL Not Found]]></template>
+              </payload-from-metadata-service>
+              <log-message-service>
+                <unique-id>LogMessage</unique-id>
+                <log-level>DEBUG</log-level>
+              </log-message-service>
+            </services>
+          </service-collection>
+          <producer class="jetty-standard-response-producer">
+            <unique-id>high-lichterman</unique-id>
+            <status-provider class="http-configured-status">
+              <status>NOT_FOUND_404</status>
+            </status-provider>
+            <response-header-provider class="jetty-no-response-headers"/>
+            <content-type-provider class="http-configured-content-type-provider">
+              <mime-type>text/plain</mime-type>
+            </content-type-provider>
+            <send-payload>true</send-payload>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>DefaultURL</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>DefaultURL-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>DefaultURL-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>WebServer</unique-id>
+      <auto-start>false</auto-start>
+    </channel>
+    <channel>
+      <consume-connection class="null-connection">
+        <unique-id>kickass-brattain</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>ecstatic-bassi</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>suspicious-swirles</unique-id>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>ProductLookup</configured-thread-name>
+            </destination>
+            <poller class="random-interval-poller"/>
+            <message-provider class="static-polling-trigger-template">
+              <template><![CDATA[Message triggered by ProductLookup]]></template>
+            </message-provider>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>amazing-spence</unique-id>
+            <services>
+              <embedded-scripting-service>
+                <unique-id>SetMessageType</unique-id>
+                <language>javascript</language>
+                <script><![CDATA[
+// Select a message-type from the valid list
+msgtype_index = Math.floor((Math.random() * 3));
+var msg_types = [ "PRODUCT_LOOKUP", "PRODUCT_MOVEMENT" , "PRODUCT_RECALL"];
+var msg_data = [ "Product Lookup", "Product has moved somewhere", "Product is damaged"];
+
+message.addMetadata('messageType', msg_types[msgtype_index]);
+message.setStringPayload(msg_data[msgtype_index]);
+]]></script>
+              </embedded-scripting-service>
+              <add-timestamp-metadata-service>
+                <unique-id>AddTimestamp</unique-id>
+                <metadata-key>timestamp</metadata-key>
+                <date-format-builder>
+                  <format>yyyy-MM-dd&apos;T&apos;HH:mm:ssZ</format>
+                </date-format-builder>
+              </add-timestamp-metadata-service>
+              <payload-hashing-service>
+                <unique-id>HashPayload</unique-id>
+                <hash-algorithm>MD5</hash-algorithm>
+                <metadata-key>payloadHash</metadata-key>
+              </payload-hashing-service>
+              <generate-unique-metadata-value-service>
+                <unique-id>GenerateUniqueMetadata</unique-id>
+                <generator class="guid-generator"/>
+              </generate-unique-metadata-value-service>
+              <branching-service-collection>
+                <unique-id>ProductLookup</unique-id>
+                <services>
+                  <metadata-value-branching-service>
+                    <unique-id>CheckMessageType</unique-id>
+                    <metadata-key>messageType</metadata-key>
+                    <default-service-id>PRODUCT_MOVEMENT</default-service-id>
+                    <value-matcher class="use-key-as-service-id-value-matcher"/>
+                    <metadata-to-service-id-mappings/>
+                  </metadata-value-branching-service>
+                  <service-list>
+                    <unique-id>PRODUCT_MOVEMENT</unique-id>
+                    <services>
+                      <add-metadata-service>
+                        <unique-id>AssignProductMovementURL</unique-id>
+                        <metadata-element>
+                          <key>product_url</key>
+                          <value>http://localhost:8080/products/movement</value>
+                        </metadata-element>
+                      </add-metadata-service>
+                    </services>
+                  </service-list>
+                  <service-list>
+                    <unique-id>PRODUCT_RECALL</unique-id>
+                    <services>
+                      <add-metadata-service>
+                        <unique-id>AssignProductRecallURL</unique-id>
+                        <metadata-element>
+                          <key>product_url</key>
+                          <value>http://localhost:8080/products/recall</value>
+                        </metadata-element>
+                      </add-metadata-service>
+                    </services>
+                  </service-list>
+                  <service-list>
+                    <unique-id>PRODUCT_LOOKUP</unique-id>
+                    <services>
+                      <add-metadata-service>
+                        <unique-id>AssignProductLookupURL</unique-id>
+                        <metadata-element>
+                          <key>product_url</key>
+                          <value>http://localhost:8080/products/lookup</value>
+                        </metadata-element>
+                      </add-metadata-service>
+                    </services>
+                  </service-list>
+                </services>
+                <first-service-id>CheckMessageType</first-service-id>
+              </branching-service-collection>
+              <standalone-requestor>
+                <unique-id>awesome-bassi</unique-id>
+                <connection class="null-connection">
+                  <unique-id>awesome-euclid</unique-id>
+                </connection>
+                <producer class="standard-http-producer">
+                  <unique-id>jovial-wozniak</unique-id>
+                  <destination class="metadata-destination">
+                    <key>product_url</key>
+                  </destination>
+                  <method-provider class="http-configured-request-method">
+                    <method>POST</method>
+                  </method-provider>
+                  <content-type-provider class="http-configured-content-type-provider">
+                    <mime-type>text/plain</mime-type>
+                  </content-type-provider>
+                  <response-header-handler class="http-response-headers-as-metadata"/>
+                  <request-header-provider class="http-no-request-headers"/>
+                  <authenticator class="http-no-authentication"/>
+                </producer>
+              </standalone-requestor>
+              <log-message-service>
+                <unique-id>LogProductRequest</unique-id>
+                <log-level>DEBUG</log-level>
+              </log-message-service>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>boring-gates</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>ProductLookup</unique-id>
+          <message-metrics-interceptor-by-metadata>
+            <unique-id>ProductLookupStats</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>100</timeslice-history-count>
+            <metadata-element>
+              <key>messageType</key>
+              <value>PRODUCT_LOOKUP</value>
+            </metadata-element>
+          </message-metrics-interceptor-by-metadata>
+          <message-metrics-interceptor>
+            <unique-id>ProductLookup-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>ProductLookup-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>WebClient</unique-id>
+      <auto-start>false</auto-start>
+    </channel>
+  </channel-list>
   <message-error-digester class="standard-message-error-digester">
     <unique-id>ErrorDigest</unique-id>
     <digest-max-size>100</digest-max-size>
