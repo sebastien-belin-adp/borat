@@ -2,7 +2,8 @@
   "name" : "2019-03-06T08.27.25",
   "variableSets" : {
     "default" : { },
-    "staging" : { }
+    "staging" : { },
+    "live" : { }
   },
   "variableXpaths" : {
     "/adapter/channel-list/channel[unique-id=\"Channel5\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/producer/destination/destination" : "${produceDest}",
