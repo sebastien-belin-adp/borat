@@ -21,7 +21,7 @@
                 <unique-id>backstabbing-morse</unique-id>
                 <metadata-element>
                   <key>key</key>
-                  <value>value</value>
+                  <value>${metadataValue}</value>
                 </metadata-element>
               </add-metadata-service>
               <add-timestamp-metadata-service>
