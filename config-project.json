@@ -1,5 +1,6 @@
 {
   "configFileName" : "borat.xml",
+  "variableFileName" : "variables.properties",
   "variableSets" : {
     "default" : { }
   },
