@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><event-handler class="default-event-handler">
-    <unique-id>DefaultEventHandler</unique-id>
-    <connection class="null-connection">
-      <unique-id>NullConnection-9723862</unique-id>
-    </connection>
-    <producer class="null-message-producer">
-      <unique-id>NullMessageProducer-5178137</unique-id>
-    </producer>
-  </event-handler>

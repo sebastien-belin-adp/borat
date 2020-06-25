@@ -9,7 +9,15 @@
     <connections/>
     <services/>
   </shared-components>
-  <xi:include href="adapter-includes/event-handler-FS-FS-modified-test7-DefaultEventHandler.xml"/>
+  <event-handler class="default-event-handler">
+    <unique-id>DefaultEventHandler</unique-id>
+    <connection class="null-connection">
+      <unique-id>NullConnection-9723862</unique-id>
+    </connection>
+    <producer class="null-message-producer">
+      <unique-id>NullMessageProducer-5178137</unique-id>
+    </producer>
+  </event-handler>
   <message-error-handler class="null-processing-exception-handler">
     <unique-id>NullProcessingExceptionHandler-9650991</unique-id>
   </message-error-handler>

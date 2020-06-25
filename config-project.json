@@ -15,8 +15,7 @@
   "xincludeXpaths" : {
     "/adapter/channel-list/channel/consume-connection" : "consume-connection",
     "/adapter/channel-list/channel/produce-connection" : "produce-connection",
-    "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflow",
-    "/adapter/event-handler" : "event-handler"
+    "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflow"
   },
   "additionalFiles" : {
     "bootstrap.properties" : "bootstrap.properties"
