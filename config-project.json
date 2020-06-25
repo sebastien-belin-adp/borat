@@ -3,7 +3,8 @@
   "variableSets" : {
     "default" : { },
     "staging" : { },
-    "live" : { }
+    "live" : { },
+    "test" : { }
   },
   "variableXpaths" : {
     "/adapter/channel-list/channel[unique-id=\"Channel6\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/producer/destination/destination" : "${produceDest}",
