@@ -18,12 +18,12 @@
   </failed-message-retrier>
   <channel-list>
     <channel>
-      <xi:include href="adapter-includes/consume-connection-Channel5-NullConnection-1183581.xml"/>
-      <xi:include href="adapter-includes/produce-connection-Channel5-NullConnection-2385428.xml"/>
+      <xi:include href="adapter-includes/consume-connection-Channel6-NullConnection-1183581.xml"/>
+      <xi:include href="adapter-includes/produce-connection-Channel6-NullConnection-2385428.xml"/>
       <workflow-list>
-        <xi:include href="adapter-includes/workflow-Channel5-Workflow3.xml"/>
+        <xi:include href="adapter-includes/workflow-Channel6-Workflow3.xml"/>
       </workflow-list>
-      <unique-id>Channel5</unique-id>
+      <unique-id>Channel6</unique-id>
     </channel>
   </channel-list>
   <message-error-digester class="standard-message-error-digester">

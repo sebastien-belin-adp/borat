@@ -6,9 +6,9 @@
     "live" : { }
   },
   "variableXpaths" : {
-    "/adapter/channel-list/channel[unique-id=\"Channel5\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/producer/destination/destination" : "${produceDest}",
-    "/adapter/channel-list/channel[unique-id=\"Channel5\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/destination" : "${consumeDest}",
-    "/adapter/channel-list/channel[unique-id=\"Channel5\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/service-collection/services/add-metadata-service[unique-id=\"backstabbing-morse\"]/metadata-element[1]/value" : "${metadataValue}"
+    "/adapter/channel-list/channel[unique-id=\"Channel6\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/producer/destination/destination" : "${produceDest}",
+    "/adapter/channel-list/channel[unique-id=\"Channel6\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/destination" : "${consumeDest}",
+    "/adapter/channel-list/channel[unique-id=\"Channel6\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/service-collection/services/add-metadata-service[unique-id=\"backstabbing-morse\"]/metadata-element[1]/value" : "${metadataValue}"
   },
   "uidInXincludeCompntListFileName" : true,
   "xincludeXpaths" : {
@@ -17,5 +17,9 @@
     "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflow",
     "/adapter/event-handler" : "event-handler"
   },
+  "additionalFiles" : {
+    "bootstrap.properties" : "bootstrap.properties"
+  },
+  "optionalComponentsInUse" : [ ],
   "structured" : true
 }
