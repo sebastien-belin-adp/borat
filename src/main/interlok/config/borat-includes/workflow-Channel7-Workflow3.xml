@@ -9,9 +9,7 @@
             </poller>
             <create-dirs>true</create-dirs>
             <file-sorter class="fs-sort-none"/>
-            <destination class="configured-consume-destination">
-              <destination>${consumeDest}</destination>
-            </destination>
+            <base-directory-url>${consumeDestination}</base-directory-url>
             <wip-suffix>.wip</wip-suffix>
           </consumer>
           <service-collection class="service-list">
