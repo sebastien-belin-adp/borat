@@ -3,7 +3,8 @@
   "variableFileName" : "borat.xml-includes.properties",
   "variableSets" : {
     "staging" : { },
-    "default" : { }
+    "default" : { },
+    "live" : { }
   },
   "variableXpaths" : {
     "/adapter/channel-list/channel[unique-id=\"Channel8Changed\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/destination" : "keyOne",
@@ -14,7 +15,8 @@
   "xincludeXpaths" : {
     "/adapter/channel-list/channel/produce-connection" : "produce-connection",
     "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflow",
-    "/adapter/channel-list/channel/consume-connection" : "consume-connection"
+    "/adapter/channel-list/channel/consume-connection" : "consume-connection",
+    "/adapter/shared-components" : "shared-components"
   },
   "additionalFiles" : { },
   "optionalComponentsInUse" : [ ],
