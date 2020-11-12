@@ -3,8 +3,7 @@
   "variableFileName" : "borat.xml-includes.properties",
   "variableSets" : {
     "staging" : { },
-    "default" : { },
-    "live" : { }
+    "default" : { }
   },
   "variableXpaths" : {
     "/adapter/channel-list/channel[unique-id=\"Channel8Changed\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/destination" : "keyOne",
