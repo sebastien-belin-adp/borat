@@ -31,7 +31,7 @@
       <workflow-list>
         <xi:include href="borat-includes/workflow.xml"/>
       </workflow-list>
-      <unique-id>Channel7Changed</unique-id>
+      <unique-id>Channel8Changed</unique-id>
     </channel>
   </channel-list>
   <message-error-digester class="standard-message-error-digester">

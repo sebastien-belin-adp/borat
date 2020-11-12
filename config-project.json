@@ -6,9 +6,9 @@
     "default" : { }
   },
   "variableXpaths" : {
-    "/adapter/channel-list/channel[unique-id=\"Channel7Changed\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/destination" : "keyOne",
-    "/adapter/channel-list/channel[unique-id=\"Channel7Changed\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/producer/destination/destination" : "keyTwo",
-    "/adapter/channel-list/channel[unique-id=\"Channel7Changed\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/configured-thread-name" : "${keyThree}"
+    "/adapter/channel-list/channel[unique-id=\"Channel8Changed\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/destination" : "keyOne",
+    "/adapter/channel-list/channel[unique-id=\"Channel8Changed\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/producer/destination/destination" : "keyTwo",
+    "/adapter/channel-list/channel[unique-id=\"Channel8Changed\"]/workflow-list/standard-workflow[unique-id=\"Workflow3\"]/consumer/destination/configured-thread-name" : "${keyThree}"
   },
   "uidInXincludeCompntListFileName" : false,
   "xincludeXpaths" : {
@@ -16,5 +16,7 @@
     "/adapter/channel-list/channel/workflow-list/*[contains(name(),'-workflow')]" : "workflow",
     "/adapter/channel-list/channel/consume-connection" : "consume-connection"
   },
+  "additionalFiles" : { },
+  "optionalComponentsInUse" : [ ],
   "structured" : false
 }

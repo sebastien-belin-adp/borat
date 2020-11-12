@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><standard-workflow>
           <consumer class="fs-consumer">
             <unique-id>Channel-5671058</unique-id>
-            <destination class="configured-consume-destination">
-              <configured-thread-name>${keyThree}</configured-thread-name>
-              <destination>${keyOne}</destination>
-            </destination>
             <poller class="fixed-interval-poller">
               <poll-interval>
                 <unit>SECONDS</unit>
@@ -13,6 +9,10 @@
             </poller>
             <create-dirs>true</create-dirs>
             <file-sorter class="fs-sort-none"/>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>${keyThree}</configured-thread-name>
+              <destination>${keyOne}</destination>
+            </destination>
             <wip-suffix>.wip</wip-suffix>
           </consumer>
           <service-collection class="service-list">
@@ -21,14 +21,14 @@
           </service-collection>
           <producer class="fs-producer">
             <unique-id>FS-Producer</unique-id>
-            <destination class="configured-produce-destination">
-              <destination>${keyTwo}</destination>
-            </destination>
             <create-dirs>true</create-dirs>
             <fs-worker class="fs-nio-worker"/>
             <filename-creator class="formatted-filename-creator">
               <filename-format>%2$tQ.xml</filename-format>
             </filename-creator>
+            <destination class="configured-produce-destination">
+              <destination>${keyTwo}</destination>
+            </destination>
           </producer>
           <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>Workflow3</unique-id>
