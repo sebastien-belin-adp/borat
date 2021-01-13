@@ -5,7 +5,10 @@
   <log-handler class="null-log-handler">
     <unique-id>high-dijkstra</unique-id>
   </log-handler>
-  <xi:include href="borat-includes/shared-components.xml"/>
+  <shared-components>
+    <connections/>
+    <services/>
+  </shared-components>
   <event-handler class="default-event-handler">
     <unique-id>DefaultEventHandler</unique-id>
     <connection class="null-connection">
