@@ -1,5 +1,5 @@
 <adapter>
-  <unique-id>MyInterlokInstance2</unique-id>
+  <unique-id>MyInterlokInstance</unique-id>
   <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
   <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
   <shared-components>
@@ -32,20 +32,21 @@
           <producer class="fs-producer">
             <encoder class="mime-encoder"/>
             <unique-id>tiny-goldstine</unique-id>
-            <destination class="configured-produce-destination">
-              <destination>./messages/bad</destination>
-            </destination>
             <create-dirs>true</create-dirs>
             <fs-worker class="fs-nio-worker"/>
             <filename-creator class="formatted-filename-creator">
               <filename-format>%1$s</filename-format>
             </filename-creator>
+            <destination class="configured-produce-destination">
+              <destination>./messages/bad</destination>
+            </destination>
           </producer>
         </standalone-producer>
       </services>
     </processing-exception-service>
   </message-error-handler>
   <failed-message-retrier class="default-failed-message-retrier">
+    <unique-id>dreamy-bell</unique-id>
     <standalone-consumer>
       <connection class="null-connection">
         <unique-id>clever-engelbart</unique-id>
@@ -55,19 +56,18 @@
           <retain-unique-id>true</retain-unique-id>
         </encoder>
         <unique-id>condescending-meitner</unique-id>
-        <destination class="configured-consume-destination">
-          <configured-thread-name>MESSAGE_RETRY</configured-thread-name>
-          <destination>./messages/retry</destination>
-        </destination>
         <poller class="quartz-cron-poller">
           <cron-expression>0 */2 * * * ?</cron-expression>
         </poller>
         <create-dirs>true</create-dirs>
         <file-sorter class="fs-sort-none"/>
+        <destination class="configured-consume-destination">
+          <configured-thread-name>MESSAGE_RETRY</configured-thread-name>
+          <destination>./messages/retry</destination>
+        </destination>
         <wip-suffix>.wip</wip-suffix>
       </consumer>
     </standalone-consumer>
-    <unique-id>dreamy-bell</unique-id>
   </failed-message-retrier>
   <channel-list>
     <channel>
@@ -81,13 +81,13 @@
         <standard-workflow>
           <consumer class="polling-trigger">
             <unique-id>mad-morse</unique-id>
-            <destination class="configured-consume-destination">
-              <configured-thread-name>SendOrders</configured-thread-name>
-            </destination>
             <poller class="random-interval-poller"/>
             <message-provider class="static-polling-trigger-template">
               <template><![CDATA[Message triggered by SEND_ORDERS]]></template>
             </message-provider>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>SendOrders</configured-thread-name>
+            </destination>
           </consumer>
           <service-collection class="service-list">
             <unique-id>reverent-austin</unique-id>
@@ -213,13 +213,13 @@ if (maybeFail <= 5) {
         <standard-workflow>
           <consumer class="polling-trigger">
             <unique-id>cocky-tesla</unique-id>
-            <destination class="configured-consume-destination">
-              <configured-thread-name>ReceiveOrders</configured-thread-name>
-            </destination>
             <poller class="random-interval-poller"/>
             <message-provider class="static-polling-trigger-template">
               <template><![CDATA[Message triggered by RECEIVE_ORDERS]]></template>
             </message-provider>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>ReceiveOrders</configured-thread-name>
+            </destination>
           </consumer>
           <service-collection class="service-list">
             <unique-id>hungry-darwin</unique-id>
@@ -320,13 +320,13 @@ if (maybeFail <= 5) {
         <standard-workflow>
           <consumer class="polling-trigger">
             <unique-id>fervent-mestorf</unique-id>
-            <destination class="configured-consume-destination">
-              <configured-thread-name>SendInvoices</configured-thread-name>
-            </destination>
             <poller class="random-interval-poller"/>
             <message-provider class="static-polling-trigger-template">
               <template><![CDATA[Message triggered by SEND_INVOICES]]></template>
             </message-provider>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>SendInvoices</configured-thread-name>
+            </destination>
           </consumer>
           <service-collection class="service-list">
             <unique-id>cranky-noyce</unique-id>
@@ -415,13 +415,13 @@ if (maybeFail <= 5) {
         <standard-workflow>
           <consumer class="polling-trigger">
             <unique-id>reverent-bohr</unique-id>
-            <destination class="configured-consume-destination">
-              <configured-thread-name>ReceiveInvoices</configured-thread-name>
-            </destination>
             <poller class="random-interval-poller"/>
             <message-provider class="static-polling-trigger-template">
               <template><![CDATA[Message triggered by RECEIVE_INVOICES]]></template>
             </message-provider>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>ReceiveInvoices</configured-thread-name>
+            </destination>
           </consumer>
           <service-collection class="service-list">
             <unique-id>sleepy-fermat</unique-id>
@@ -522,13 +522,13 @@ if (maybeFail <= 5) {
         <standard-workflow>
           <consumer class="polling-trigger">
             <unique-id>goofy-davinci</unique-id>
-            <destination class="configured-consume-destination">
-              <configured-thread-name>SendInventoryUpdates</configured-thread-name>
-            </destination>
             <poller class="random-interval-poller"/>
             <message-provider class="static-polling-trigger-template">
               <template><![CDATA[Message triggered by SEND_INVENTORY_UPDATES]]></template>
             </message-provider>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>SendInventoryUpdates</configured-thread-name>
+            </destination>
           </consumer>
           <service-collection class="service-list">
             <unique-id>clever-volhard</unique-id>
@@ -617,13 +617,13 @@ if (maybeFail <= 5) {
         <standard-workflow>
           <consumer class="polling-trigger">
             <unique-id>peaceful-albattani</unique-id>
-            <destination class="configured-consume-destination">
-              <configured-thread-name>ReceiveInventoryUpdates</configured-thread-name>
-            </destination>
             <poller class="random-interval-poller"/>
             <message-provider class="static-polling-trigger-template">
               <template><![CDATA[Message triggered by RECEIVE_INVENTORY_UPDATES]]></template>
             </message-provider>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>ReceiveInventoryUpdates</configured-thread-name>
+            </destination>
           </consumer>
           <service-collection class="service-list">
             <unique-id>condescending-jang</unique-id>
@@ -791,6 +791,7 @@ if (maybeFail <= 20) {
                           </key-value-pair>
                         </metadata-tokens>
                         <template><![CDATA[Code=__ProductCode__]]></template>
+                        <multi-line-expression>false</multi-line-expression>
                       </payload-from-metadata-service>
                       <standalone-producer>
                         <unique-id>SendResponse</unique-id>
@@ -818,6 +819,7 @@ if (maybeFail <= 20) {
                         <unique-id>CodeNotFound</unique-id>
                         <metadata-tokens/>
                         <template><![CDATA[Product Code Not Found]]></template>
+                        <multi-line-expression>false</multi-line-expression>
                       </payload-from-metadata-service>
                       <standalone-producer>
                         <unique-id>SendResponse</unique-id>
@@ -914,6 +916,7 @@ if (maybeFail <= 20) {
                           </key-value-pair>
                         </metadata-tokens>
                         <template><![CDATA[Code=__ProductMovementTransactionId__]]></template>
+                        <multi-line-expression>false</multi-line-expression>
                       </payload-from-metadata-service>
                       <standalone-producer>
                         <unique-id>SendResponse</unique-id>
@@ -941,6 +944,7 @@ if (maybeFail <= 20) {
                         <unique-id>GenerateProducteMovementFailure</unique-id>
                         <metadata-tokens/>
                         <template><![CDATA[Product Not found in location]]></template>
+                        <multi-line-expression>false</multi-line-expression>
                       </payload-from-metadata-service>
                       <standalone-producer>
                         <unique-id>SendResponse</unique-id>
@@ -1037,6 +1041,7 @@ if (maybeFail <= 20) {
                           </key-value-pair>
                         </metadata-tokens>
                         <template><![CDATA[Code=__ProductRecallTransactionId__]]></template>
+                        <multi-line-expression>false</multi-line-expression>
                       </payload-from-metadata-service>
                       <standalone-producer>
                         <unique-id>SendResponse</unique-id>
@@ -1064,6 +1069,7 @@ if (maybeFail <= 20) {
                         <unique-id>GenerateProducteRecallFailure</unique-id>
                         <metadata-tokens/>
                         <template><![CDATA[Could not recall product]]></template>
+                        <multi-line-expression>false</multi-line-expression>
                       </payload-from-metadata-service>
                       <standalone-producer>
                         <unique-id>SendResponse</unique-id>
@@ -1123,6 +1129,7 @@ if (maybeFail <= 20) {
                 <unique-id>GenerateResult</unique-id>
                 <metadata-tokens/>
                 <template><![CDATA[URL Not Found]]></template>
+                <multi-line-expression>false</multi-line-expression>
               </payload-from-metadata-service>
               <log-message-service>
                 <unique-id>LogMessage</unique-id>
@@ -1170,13 +1177,13 @@ if (maybeFail <= 20) {
         <standard-workflow>
           <consumer class="polling-trigger">
             <unique-id>suspicious-swirles</unique-id>
-            <destination class="configured-consume-destination">
-              <configured-thread-name>ProductLookup</configured-thread-name>
-            </destination>
             <poller class="random-interval-poller"/>
             <message-provider class="static-polling-trigger-template">
               <template><![CDATA[Message triggered by ProductLookup]]></template>
             </message-provider>
+            <destination class="configured-consume-destination">
+              <configured-thread-name>ProductLookup</configured-thread-name>
+            </destination>
           </consumer>
           <service-collection class="service-list">
             <unique-id>amazing-spence</unique-id>
@@ -1266,9 +1273,6 @@ message.setStringPayload(msg_data[msgtype_index]);
                 </connection>
                 <producer class="standard-http-producer">
                   <unique-id>jovial-wozniak</unique-id>
-                  <destination class="metadata-destination">
-                    <key>product_url</key>
-                  </destination>
                   <method-provider class="http-configured-request-method">
                     <method>POST</method>
                   </method-provider>
@@ -1277,6 +1281,9 @@ message.setStringPayload(msg_data[msgtype_index]);
                   </content-type-provider>
                   <response-header-handler class="http-response-headers-as-metadata"/>
                   <request-header-provider class="http-no-request-headers"/>
+                  <destination class="metadata-destination">
+                    <key>product_url</key>
+                  </destination>
                   <authenticator class="http-no-authentication"/>
                 </producer>
               </standalone-requestor>

@@ -7,5 +7,7 @@
   "variableXpaths" : { },
   "uidInXincludeCompntListFileName" : false,
   "xincludeXpaths" : { },
+  "additionalFiles" : { },
+  "optionalComponentsInUse" : [ ],
   "structured" : false
 }
